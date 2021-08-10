@@ -1,4 +1,4 @@
-﻿using HsMS.Models;
+using HsMS.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +31,7 @@ namespace HsMS.Database
         public List<Student> Get()
         {
             HsMSDBContext context = new HsMSDBContext();
-            return context.Students.OrderBy(x => x.Id).ToList();
+            return context.Students.Include("StudentClass").ToList();
         }
         public bool Create(Student student)
         {
