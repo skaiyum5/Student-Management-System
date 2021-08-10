@@ -1,4 +1,4 @@
-﻿using HsMS.Database;
+using HsMS.Database;
 using HsMS.Models;
 using System;
 using System.Collections.Generic;
@@ -14,19 +14,24 @@ namespace HsMS.Controllers
         public ActionResult Index()
         {
             List<Student> students = StudentService.Instance.Get();
-            return View();
+            return View(students);
         }
         [HttpGet]
         public ActionResult Create()
         {
-            Student model = new Student();
-            model.studentClasses = ClassService.Instance.Get();
+            StudentViewModel model = new StudentViewModel();
+            model.StudentClasses = ClassService.Instance.Get();
             return View(model);
         }
         [HttpPost]
-        [Authorize(Roles = "Admin User")]
-        public ActionResult Create(Student student)
+        //[Authorize(Roles = "Admin User")]
+        public ActionResult Create(StudentViewModel model)
         {
+            Student student = new Student();
+            student.Name = model.Name;
+            student.Address = model.Address;
+            student.AdmissionDate = model.AdmissionDate;
+            student.StudentClass = ClassService.Instance.Get(model.ClassId);
            bool result = StudentService.Instance.Create(student);
             if (result)
             {
