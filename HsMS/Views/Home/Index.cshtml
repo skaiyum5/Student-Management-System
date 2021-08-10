@@ -1,14 +1,19 @@
-﻿@model List<HsMS.Models.Student>
+@model List<HsMS.Models.Student>
 @{
     ViewBag.Title = "Students";
     int i = 1;
 }
 
 <div>
-    <h1>List Of Students </h1>
-    <a href="@Url.Action("Create","Home")">Crete a New  Student </a>
-    </div>
 
+
+</div>
+<div class="form-group row">
+    <h1 class="col-sm-8">List Of Students </h1>
+    <div class="col-sm-4" style="padding-top:22px">
+        <a class="" href="@Url.Action("Create", "Home")">Crete a New  Student </a>
+    </div>
+</div>
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -20,18 +25,20 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="success">
-            
-            @foreach (var student in Model)
-            {
-                <td>@i</td>
-                <td>@student.Name</td>
-                <td>@student.Address</td>
-                <td>@student.AdmissionDate</td>
-                <td>@student.studentClasses.Select(x=>x.Name)</td>
 
-                @(i++ )
+
+        @{ foreach (var student in Model)
+            {
+                <tr class="success">
+                    <td>@i</td>
+                    <td>@student.Name</td>
+                    <td>@student.Address</td>
+                    <td>@student.AdmissionDate</td>
+                    <td>@student.StudentClass.Name</td>
+                </tr>
+                i++;
             }
-        </tr>
+        }
+
     </tbody>
 </table>
