@@ -1,4 +1,4 @@
-﻿@model HsMS.Models.Student
+@model HsMS.Models.StudentViewModel
 @{
     ViewBag.Title = "Create";
 
@@ -30,11 +30,11 @@
             <div class="col-sm-10">
                 <select id="ClassId" name="ClassId" title="-- Select Student Cass --" class="form-control selectpicker">
 
-                    @*@foreach (var studentClass in Model.studentClasses)
+                    @foreach (var studentClass in Model.StudentClasses)
 
                         {
                             <option value="@studentClass.Id">@studentClass.Name</option>
-                        }*@
+                        }
 
                 </select>
             </div>
